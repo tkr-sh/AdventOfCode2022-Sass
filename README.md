@@ -7,3 +7,7 @@ The version of Scss used is:
 
 ## How to run a program
 To run a program you only have to type `bash ../run.sh` on the directory you're in 
+
+## Note
+Functions in `functions.scss` are written by me.<br>
+If you want to use them or to upgrade them, feel free to do so :)!
