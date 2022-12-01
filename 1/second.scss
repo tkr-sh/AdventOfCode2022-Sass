@@ -1,0 +1,15 @@
+$list: ();
+$tmp: 0;
+
+@while $STDIN!=""{
+    $val: get();
+
+    @if $val == "" {
+        $list: append($list, $tmp);
+        $tmp: 0;
+    } @else {
+        $tmp: $tmp + number($val);
+    }
+}
+
+@debug sum(sub(reverse(sort($list)), 1, 3));
