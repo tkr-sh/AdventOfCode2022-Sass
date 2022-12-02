@@ -1,0 +1,13 @@
+$score_tot: 0;
+
+@while $STDIN!=""{
+    $val: split(get(), " ");
+    $a: ord(nth($val, 1)) - 66; $x: ord(nth($val, 2)) - 88;
+
+    $score_temp: $x * 3;
+    $score_temp2: ($x + $a)%3 + 1;
+
+    $score_tot: $score_tot + $score_temp + $score_temp2;
+}
+
+@debug $score_tot;

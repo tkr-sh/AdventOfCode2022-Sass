@@ -1,0 +1,18 @@
+$score_tot: 0;
+
+@while $STDIN!=""{
+    $val: split(get(), " ");
+    $a: nth($val, 1); $x: nth($val, 2);
+
+    $score_temp: ord($x) - 87;
+
+    @if (ord($a) - 65)%3 == (ord($x) - 65)%3  {
+        $score_temp: $score_temp + 6;
+    } @else if (ord($a) - 65)%3 == (ord($x) - 64)%3 {
+        $score_temp: $score_temp + 3;
+    }
+
+    $score_tot: $score_tot + $score_temp;
+}
+
+@debug $score_tot;

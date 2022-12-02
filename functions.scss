@@ -275,6 +275,10 @@
 @function map($func, $iterable) {
 	$new_it: ();
 
+	@if type-of($iterable) == 'string' {
+		$iterable: str-to-arr($iterable);
+	}
+
 	@each $elem in $iterable {
 		$new_it: append($new_it, call(get-function($func), $elem));
 	}
