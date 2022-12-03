@@ -1,0 +1,20 @@
+$score: 0;
+
+
+@while $STDIN != "" {
+    $s1: str-to-arr(get());
+    $s2: str-to-arr(get());
+    $s3: str-to-arr(get());
+
+    $char_common: "";
+
+    @each $char in $s1 {
+        @if count($s2, $char) > 0 and count($s3, $char) > 0 {
+            $char_common: $char;
+        }
+    }
+
+    $score: $score + if(ord($char_common) < 96, 26, 0) + ord($char_common) % 32;
+}
+
+@debug $score;

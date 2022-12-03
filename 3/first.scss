@@ -1,0 +1,21 @@
+$score: 0;
+
+@while $STDIN!=""{
+    $s: get();
+
+    $length: str-length($s);
+    $mid: calc($length / 2);
+    $first: sub($s, 1, $mid);
+    $second: sub($s, $mid + 1, str-length($s));
+    $char_common: "";
+
+    @each $char in $first {
+        @if count($second, $char) > 0 {
+            $char_common: $char;
+        }
+    }
+
+    $score: $score + if(ord($char_common) < 96, 26, 0) + ord($char_common) % 32;
+}
+
+@debug $score;
