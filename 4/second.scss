@@ -1,0 +1,21 @@
+$count: 0;
+
+@function overlap($arr1, $arr2) {
+    @return nth($arr1, 2) >= nth($arr2, 1) and nth($arr1, 1) <= nth($arr2, 1);
+}
+
+@function frmt($range) {
+    @return map(number,split($range, "-"));
+}
+
+@while $STDIN!=""{
+    $s: split(get(), ",");
+    $a: frmt(nth($s,1));
+    $b: frmt(nth($s,2));
+
+    @if overlap($a, $b) or overlap($b, $a) {
+        $count: $count + 1;
+    }
+}
+
+@debug $count;
