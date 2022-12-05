@@ -1,0 +1,55 @@
+$n: 9;
+
+
+$arr: ();
+
+@for $_ from 0 to $n {
+    $arr: append($arr, ());
+}
+
+@for $_ from 1 to $n  {
+    $line: str-to-arr(get());
+
+    @for $i from 0 to $n {
+        $char: nth($line, 2 + 4 * $i);
+
+        @if $char != " " {
+            $arr: set-nth($arr, $i + 1, append(nth($arr, $i + 1), $char))
+        } 
+    }
+}
+
+$_: get();
+$_: get();
+
+
+@while $STDIN != "" {
+    $line: split(get());
+    @debug $line;
+
+    // Variables
+    $qt: number(nth($line, 2));
+    $from: number(nth($line, 4));
+    $to: number(nth($line, 6));
+
+    $temp_arr: nth($arr, $from);
+    $length_sub: min($qt, length($temp_arr) + 1);
+    $temp_arr: sub($temp_arr, 1, $length_sub);
+
+    $arr: set-nth($arr, $to, join(reverse($temp_arr), nth($arr, $to)));
+
+    @if $qt >= length(nth($arr, $from)) {
+        $arr: set-nth($arr, $from, ());
+    } @else {
+        $arr: set-nth($arr, $from, sub(nth($arr, $from), $length_sub + 1, length(nth($arr, $from))));
+    }
+}
+
+$tot_str: "";
+@each $col in $arr {
+    @if length($col) > 0 {
+        $tot_str: $tot_str + nth($col, 1);
+    }
+}
+
+@debug $tot_str;
