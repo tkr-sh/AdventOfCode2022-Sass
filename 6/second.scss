@@ -1,0 +1,24 @@
+@function valid($str) {
+    @if $str == "" {
+        @return true;
+    }
+    @each $char in str-to-arr($str) {
+        @if count($str, $char) > 1 {
+            @return false;
+        }
+    }
+    @return true;
+}
+
+$str: "";
+$it: 0;
+@while not(valid($str)) or str-length($str) < 14 {
+    @while not(valid($str)) and str-length($str) > 1 {
+        $str: str-join(sub($str, 2, str-length($str) + 1), "");
+    }
+    $char: getc();
+    $str: $str + $char;
+    $it: $it + 1;
+}
+
+@debug $it;
