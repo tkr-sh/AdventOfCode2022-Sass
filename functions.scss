@@ -237,6 +237,10 @@
         $string: $iterable;
         $reverse-string: "";
 
+		@if str-length($list) == 0 {
+			@return "";
+		}
+
         @for $i from 1 through str-length($string) {
             $reverse-string: str-slice($string, $i, $i) + $reverse-string;
         }
@@ -248,6 +252,10 @@
     @else {
         $list: $iterable;
         $reverse-list: ();
+
+		@if length($list) == 0 {
+			@return ();
+		}
 
         @for $i from 1 through length($list) {
             $reverse-list: insert($reverse-list, 1, nth($list, $i));
@@ -365,7 +373,7 @@
         $string: $string + $value + $sep;
     }
 
-    @return ($string + nth($list, -1));
+    @return if(length($list) > 1, $string + nth($list, -1), nth($list, 1));
 }
 
 

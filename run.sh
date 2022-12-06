@@ -43,7 +43,7 @@ sass temp.scss &> STDOUT
 
 
 while read line; do
-    echo $line | sed -r 's/temp\.scss\:[0-9]+\sDEBUG:\s//g'
+    echo "$line" | sed -r 's/temp\.scss\:[0-9]+\sDEBUG:\s//g'
 done <STDOUT
 
 
